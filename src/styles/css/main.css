@@ -1,0 +1,40 @@
+body {
+  background: #006E90;
+  -webkit-animation: colour 30s linear infinite;
+  -moz-animation: colour 30s linear infinite;
+  color: white;
+  font-size: 50%; }
+
+@-webkit-keyframes colour {
+  0% {
+    background: #006E90; }
+  25% {
+    background: #5a1878; }
+  50% {
+    background: #026945; }
+  75% {
+    background: #005c78; }
+  100% {
+    background: #006E90; } }
+
+@-moz-keyframes colour {
+  0% {
+    background: #006E90; }
+  25% {
+    background: #00A896; }
+  50% {
+    background: #029663; }
+  75% {
+    background: #6E1C93; }
+  100% {
+    background: #006E90; } }
+  body #nav {
+    padding: 50px;
+    border-right: 1px solid white;
+    text-align: center; }
+  body a {
+    color: #DAFF7D; }
+  body button {
+    color: white; }
+  body button:hover {
+    color: #DAFF7D; }
