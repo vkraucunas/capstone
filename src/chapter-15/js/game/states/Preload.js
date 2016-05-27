@@ -17,8 +17,10 @@ ZenvaRunner.Preload.prototype = {
     this.load.image('foreground', 'assets/images/foreground2.png');
 
     this.load.spritesheet('coins', 'assets/images/coins-ps.png', 51, 51, 7);
+    this.load.spritesheet('starfish', 'assets/images/starfishSprite.png', 50, 50, 7);
+    this.load.spritesheet('diamond', 'assets/images/diamondSprite.png', 60, 60, 35);
     this.load.spritesheet('player', 'assets/images/greenSharkSprite.png', 160, 58, 2);
-    this.load.spritesheet('missile', 'assets/images/missiles-ps.png', 361, 218, 4);
+
 
     this.load.audio('gameMusic','assets/audio/underwater.mp3');
     this.load.audio('rocket', 'assets/audio/rocket.wav');

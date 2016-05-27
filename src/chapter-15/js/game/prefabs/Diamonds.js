@@ -1,5 +1,5 @@
-var Coin = function(game, x, y, key, frame) {
-  key = 'coins';
+var Diamond = function(game, x, y, key, frame) {
+  key = 'diamond';
   Phaser.Sprite.call(this, game, x, y, key, frame);
 
   this.scale.setTo(0.5);
@@ -18,15 +18,15 @@ var Coin = function(game, x, y, key, frame) {
 
 };
 
-Coin.prototype = Object.create(Phaser.Sprite.prototype);
-Coin.prototype.constructor = Coin;
+Diamond.prototype = Object.create(Phaser.Sprite.prototype);
+Diamond.prototype.constructor = Diamond;
 
-Coin.prototype.onRevived = function() {
+Diamond.prototype.onRevived = function() {
   this.body.velocity.x = -300;
   this.animations.play('spin', 10, true);
 };
 
-Coin.prototype.onKilled = function() {
+Diamond.prototype.onKilled = function() {
   this.animations.frame = 0;
 };
 
