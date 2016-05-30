@@ -19,14 +19,18 @@ ZenvaRunner.Preload.prototype = {
     this.load.spritesheet('coins', 'assets/images/coins-ps.png', 51, 51, 7);
     this.load.spritesheet('starfish', 'assets/images/starfishSprite.png', 50, 50, 7);
     this.load.spritesheet('diamond', 'assets/images/diamondSprite.png', 60, 60, 35);
+    this.load.spritesheet('rainbow', 'assets/images/rainbowGemSprite.png', 60, 60, 5);
     this.load.spritesheet('player', 'assets/images/greenSharkSprite.png', 160, 58, 2);
+    this.load.spritesheet('playerYellow', 'assets/images/yellowSharkSprite.png', 160, 58, 2);
+    this.load.spritesheet('playerOrange', 'assets/images/orangeSharkSprite.png', 160, 58, 2);
+    this.load.spritesheet('playerRainbow', 'assets/images/rainbowSharkSprite.png', 160, 58, 7);
+    this.load.spritesheet('playerSparkle', 'assets/images/sparkleSharkSprite.png', 200, 58, 9);
 
 
     this.load.audio('gameMusic','assets/audio/underwater.mp3');
-    this.load.audio('rocket', 'assets/audio/rocket.wav');
+
     this.load.audio('bounce', 'assets/audio/bounce.wav');
     this.load.audio('coin', 'assets/audio/coin.wav');
-    this.load.audio('death', 'assets/audio/death.wav');
 
     this.load.bitmapFont('minecraftia', 'assets/fonts/minecraftia/minecraftia.png', 'assets/fonts/minecraftia/minecraftia.xml');
 

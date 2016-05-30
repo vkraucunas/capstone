@@ -2,14 +2,17 @@ ZenvaRunner.Game = function() {
   this.playerMinAngle = -20;
   this.playerMaxAngle = 20;
 
-  this.coinRate = 1000;
+  this.coinRate = 1500;
   this.coinTimer = 0;
 
-  this.starfishRate = 2500;
+  this.starfishRate = 3500;
   this.starfishTimer = 5;
 
-  this.diamondRate = 3050;
+  this.diamondRate = 5050;
   this.diamondTimer = 6;
+
+  this.rainbowRate = 9500;
+  this.rainbowTimer = 6;
 
   this.previousstarfishType = null;
 
@@ -22,9 +25,12 @@ ZenvaRunner.Game = function() {
   this.diamondSpacingY = 10;
 
   this.starfishSpawnX = null;
-  this.starfishSpacingX = 10;
-  this.starfishSpacingY = 10;
+  this.starfishSpacingX = 30;
+  this.starfishSpacingY = 30;
 
+  this.rainbowSpawnX = null;
+  this.rainbowSpacingX = 10;
+  this.rainbowSpacingY = 10;
 
 };
 
@@ -62,6 +68,7 @@ ZenvaRunner.Game.prototype = {
     this.coins = this.game.add.group();
     this.starfishes = this.game.add.group();
     this.diamonds = this.game.add.group();
+    this.rainbows = this.game.add.group();
 
     this.jetSound = this.game.add.audio('rocket');
     this.coinSound = this.game.add.audio('coin');
@@ -70,17 +77,13 @@ ZenvaRunner.Game.prototype = {
     this.gameMusic.play('', 0, true);
 
     this.coinSpawnX = this.game.width + 64;
-    this.starfishSpawnX = this.game.width + 64;
-    this.diamondSpawnX = this.game.width + 64;
-},
+    this.starfishSpawnX = this.game.width + 80;
+    this.diamondSpawnX = this.game.width + 120;
+    this.rainbowSpawnX = this.game.width + 72;
+  },
   update: function() {
     if(this.game.input.activePointer.isDown) {
       this.player.body.velocity.y -= 10 ;
-      if(!this.jetSound.isPlaying) {
-        this.jetSound.play('', 0, true, 0.5);
-      }
-    } else {
-      this.jetSound.stop();
     }
 
     if( this.player.body.velocity.y < 0 || this.game.input.activePointer.isDown) {
@@ -107,16 +110,16 @@ ZenvaRunner.Game.prototype = {
       this.generateDiamonds();
       this.diamondTimer = this.game.time.now + this.diamondRate;
     }
+    if(this.rainbowTimer < this.game.time.now) {
+      this.generateRainbows();
+      this.rainbowTimer = this.game.time.now + this.rainbowRate;
+    }
     this.game.physics.arcade.collide(this.player, this.ground, this.groundHit, null, this);
     this.game.physics.arcade.overlap(this.player, this.coins, this.coinHit, null, this);
+    this.game.physics.arcade.overlap(this.player, this.starfishes, this.starHit, null, this);
+    this.game.physics.arcade.overlap(this.player, this.diamonds, this.diamondHit, null, this);
+    this.game.physics.arcade.overlap(this.player, this.rainbows, this.rainbowHit, null, this);
 
-  },
-  shutdown: function() {
-    this.coins.destroy();
-    this.enemies.destroy();
-    this.score = 0;
-    this.coinTimer = 0;
-    this.enemyTimer = 0;
   },
   createCoin: function() {
     var x = this.game.width;
@@ -208,7 +211,7 @@ ZenvaRunner.Game.prototype = {
           this.createStarfish();
   },
   createStarfishGroup: function(columns, rows) {
-    //create 4 coins in a group
+
     var starfishSpawnY = this.game.rnd.integerInRange(50, this.game.world.height - 192);
     var starfishRowCounter = 0;
     var starfishColumnCounter = 0;
@@ -290,13 +293,59 @@ ZenvaRunner.Game.prototype = {
     }
   },
 
+  // ^^^^^^^^^^^^^^^^^^^^^^^^^ \\
+  createRainbow: function() {
+    var x = this.game.width;
+    var y = this.game.rnd.integerInRange(80, this.game.world.height - 162);
+
+    var rainbow = this.rainbows.getFirstExists(false);
+    if(!rainbow) {
+      rainbow = new Rainbow(this.game, 0, 0);
+      this.rainbows.add(rainbow);
+    }
+
+    rainbow.reset(x, y);
+    rainbow.revive();
+    return rainbow;
+  },
+  generateRainbows: function() {
+    this.createRainbow();
+  },
+  createRainbowGroup: function(columns, rows) {
+    //create 4 coins in a group
+    var rainbowSpawnY = this.game.rnd.integerInRange(50, this.game.world.height - 192);
+    var rainbowRowCounter = 0;
+    var rainbowColumnCounter = 0;
+    var rainbow;
+    for(var i = 0; i < columns * rows; i++) {
+      rainbow = this.createRainbow(this.spawnX, rainbowSpawnY);
+      rainbow.x = rainbow.x + (rainbowColumnCounter * rainbow.width) + (rainbowColumnCounter * this.coinSpacingX);
+      rainbow.y = rainbowSpawnY + (rainbowRowCounter * rainbow.height) + (rainbowRowCounter * this.coinSpacingY);
+      rainbowColumnCounter++;
+      if(i+1 >= columns && (i+1) % columns === 0) {
+        rainbowRowCounter++;
+        rainbowColumnCounter = 0;
+      }
+    }
+  },
+
 
 
   groundHit: function(player, ground) {
     player.body.velocity.y = -20;
+    this.player.loadTexture('player');
+    this.player.animations.add('swim', [0,1,2,1]);
+    this.player.animations.play('swim', 4, true);
   },
   coinHit: function(player, coin) {
-    this.score++;
+
+    this.player.loadTexture('playerYellow');
+    // this.player.anchor.setTo(0.5);
+    this.player.animations.add('swim', [0,1,2,1]);
+    this.player.animations.play('swim', 4, true);
+
+
+
     this.coinSound.play();
     coin.kill();
 
@@ -311,5 +360,67 @@ ZenvaRunner.Game.prototype = {
       dummyCoin.destroy();
     }, this);
 
-  }
+  },
+  starHit: function(player, starfish) {
+
+
+    this.player.loadTexture('playerOrange');
+    // this.player.anchor.setTo(0.5);
+    this.player.animations.add('swim', [0,1,2,1]);
+    this.player.animations.play('swim', 4, true);
+
+    var dummyStar = new Starfish(this.game, starfish.x, starfish.y);
+    this.game.add.existing(dummyStar);
+
+    starfish.kill();
+    dummyStar.animations.play('spin', 40, true);
+
+    var scoreTween = this.game.add.tween(dummyStar).to({x: 50, y: 50}, 300, Phaser.Easing.Linear.NONE, true);
+
+    scoreTween.onComplete.add(function() {
+      dummyStar.destroy();
+    }, this);
+
+  },
+  diamondHit: function(player, diamond) {
+    diamond.kill();
+
+    this.player.loadTexture('playerSparkle');
+    // this.player.anchor.setTo(0.5);
+    this.player.animations.add('swim', [0,1,2,3,4,5,6,7,8,9,8,7,6,5,4,3,2]);
+    this.player.animations.play('swim', 8, true);
+
+    var dummyDiamond = new Diamond(this.game, diamond.x, diamond.y);
+    this.game.add.existing(dummyDiamond);
+
+    dummyDiamond.animations.play('spin', 40, true);
+
+    var scoreTween = this.game.add.tween(dummyDiamond).to({x: 50, y: 50}, 300, Phaser.Easing.Linear.NONE, true);
+
+    scoreTween.onComplete.add(function() {
+      dummyDiamond.destroy();
+    }, this);
+
+  },
+  rainbowHit: function(player, rainbow) {
+    rainbow.kill();
+
+    this.player.loadTexture('playerRainbow');
+    // this.player.anchor.setTo(0.5);
+    this.player.animations.add('swim', [0,1,2,3,4,5,6,7,6,5,4,3,2]);
+    this.player.animations.play('swim', 8, true);
+
+    var dummyRainbow = new Rainbow(this.game, rainbow.x, rainbow.y);
+    this.game.add.existing(dummyRainbow);
+
+    dummyRainbow.animations.play('spin', 40, true);
+
+    var scoreTween = this.game.add.tween(dummyRainbow).to({x: 50, y: 50}, 200, Phaser.Easing.Linear.NONE, true);
+
+    scoreTween.onComplete.add(function() {
+      dummyRainbow.destroy();
+    }, this);
+
+  },
+
 };

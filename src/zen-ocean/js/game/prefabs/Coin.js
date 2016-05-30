@@ -22,7 +22,7 @@ Coin.prototype = Object.create(Phaser.Sprite.prototype);
 Coin.prototype.constructor = Coin;
 
 Coin.prototype.onRevived = function() {
-  this.body.velocity.x = -300;
+  this.body.velocity.x = -280;
   this.animations.play('spin', 10, true);
 };
 

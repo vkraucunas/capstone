@@ -1,9 +1,9 @@
-var Diamond = function(game, x, y, key, frame) {
-  key = 'diamond';
+var Starfish = function(game, x, y, key, frame) {
+  key = 'starfish';
   Phaser.Sprite.call(this, game, x, y, key, frame);
 
   this.scale.setTo(0.5);
-  this.anchor.setTo(0.5);
+  this.anchor.setTo(0.8);
 
   this.animations.add('spin');
 
@@ -18,15 +18,15 @@ var Diamond = function(game, x, y, key, frame) {
 
 };
 
-Diamond.prototype = Object.create(Phaser.Sprite.prototype);
-Diamond.prototype.constructor = Diamond;
+Starfish.prototype = Object.create(Phaser.Sprite.prototype);
+Starfish.prototype.constructor = Starfish;
 
-Diamond.prototype.onRevived = function() {
-  this.body.velocity.x = -300;
+Starfish.prototype.onRevived = function() {
+  this.body.velocity.x = -260;
   this.animations.play('spin', 10, true);
 };
 
-Diamond.prototype.onKilled = function() {
+Starfish.prototype.onKilled = function() {
   this.animations.frame = 0;
 };
 
