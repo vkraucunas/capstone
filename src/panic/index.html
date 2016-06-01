@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panic Mode</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h2 class="opacity">Sync your breathing with this and relax.</h2>
+    <p>Optional city rainstorm sound to help block out surroundings</p>
+    <div class="container">
+      <div class="octagon shape"></div>
+      <div class="heptagon shape"></div>
+      <div class="hexagon shape"></div>
+      <div class="pentagon shape"></div>
+      <div class="square shape"></div>
+      <div class="triangle shape"></div>
+    </div>
+    <div class="player">
+      <button id="play" onclick="audio.play()" class="opacity"><i class="fa fa-play"></i></button>
+      <button id="pause" onclick="audio.pause()" class="opacity"><i class="fa fa-pause"></i></button>
+    </div>
+    <audio id="audio" preload="auto" loop="loop" volume="0.5">
+      <source src="resources/city_storm.mp3" type="audio/mp3"/>
+    </audio>
+</body>
+</html>
