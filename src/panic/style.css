@@ -5,6 +5,7 @@ body {
   text-align: center;
   color: #544742;
   font-family: 'Raleway', cursive;
+  margin: 0;
 }
 
 @-webkit-keyframes background {
@@ -47,8 +48,8 @@ body {
 }
 
 h1, h2, p {
-  -webkit-animation: opacity 6.5s linear infinite forwards;
-          animation: opacity 6.5s linear infinite forwards;
+  -webkit-animation: opacity 10s linear infinite forwards;
+          animation: opacity 10s linear infinite forwards;
 }
 
 h1 {
@@ -97,7 +98,7 @@ h2 {
     opacity: .5;
   }
 }
-.container {
+/*.container {
   position: absolute;
   left: 50%;
   bottom: 0;
