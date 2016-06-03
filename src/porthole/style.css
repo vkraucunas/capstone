@@ -1,0 +1,116 @@
+@import url(http://fonts.googleapis.com/css?family=Karla:700,400);
+#water-spring {
+/*  position: fixed;
+  top: 0;
+  left: 0;*/
+  width: 95% !important;
+  height: 95% !important;
+  background: rgba(78,128,152,1);
+  background: -moz-linear-gradient(top, rgba(78,128,152,1) 0%, rgba(117,189,209,1) 59%, rgba(147,206,222,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(78,128,152,1)), color-stop(59%, rgba(117,189,209,1)), color-stop(100%, rgba(147,206,222,1)));
+  background: -webkit-linear-gradient(top, rgba(78,128,152,1) 0%, rgba(117,189,209,1) 59%, rgba(147,206,222,1) 100%);
+  background: -o-linear-gradient(top, rgba(78,128,152,1) 0%, rgba(117,189,209,1) 59%, rgba(147,206,222,1) 100%);
+  background: -ms-linear-gradient(top, rgba(78,128,152,1) 0%, rgba(117,189,209,1) 59%, rgba(147,206,222,1) 100%);
+  background: linear-gradient(to bottom, rgba(78,128,152,1) 0%, rgba(117,189,209,1) 59%, rgba(147,206,222,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e8098', endColorstr='#93cede', GradientType=0 );
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  margin:0;
+  padding: 5%;
+  background:
+  background: #99813c; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #99813c 0%, #d9be64 99%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #99813c 0%,#d9be64 99%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #99813c 0%,#d9be64 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99813c', endColorstr='#d9be64',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  border-radius: 50%;
+  -webkit-box-shadow: 5px 15px 4px rgba(40,40,40,.4);
+  -moz-box-shadow: 5px 15px 4px rgba(40,40,40,.4);
+  box-shadow: 5px 15px 4px rgba(40,40,40,.4);
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+  margin-left:18px;
+  border-radius: 50%;
+}
+
+body {
+  font-family: Karla, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  background-image: url('woodPanelWarmBrown.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 0 20px 0 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: right;
+  z-index: 1;
+  overflow: hidden;
+}
+.footer .info {
+  position: absolute;
+  top: -1000px;
+  color: #fff;
+  z-index: 1;
+  background: #000;
+  border-radius: 10px;
+  line-height: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 10px;
+}
+.footer .toggle {
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 20px;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.footer .toggle span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  background: black;
+  color: white;
+}
+.footer:hover .info {
+  position: relative;
+  top: 0;
+}
+.footer:hover .toggle {
+  display: none;
+}

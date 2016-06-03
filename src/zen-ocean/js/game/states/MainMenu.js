@@ -27,6 +27,10 @@ ZenvaRunner.MainMenu.prototype = {
     this.startText.x = this.game.width / 2 - this.startText.textWidth / 2;
     this.startText.y = this.game.height / 2;
 
+    this.description = this.game.add.bitmapText(0,0, 'minecraftia', 'tap to make shark swim upward. collect goodies. no dying. no stress.', 20);
+    this.description.x = this.game.width / 2 - this.description.textWidth / 2;
+    this.description.y = this.game.height / 2 + this.startText.height;
+
   },
   update: function() {
     if(this.game.input.activePointer.justPressed()) {
