@@ -38,3 +38,6 @@ body {
     color: white; }
   body button:hover {
     color: #DAFF7D; }
+  body #panic {
+    height: 100px;
+    width: 250px; }
