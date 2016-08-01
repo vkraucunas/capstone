@@ -14,7 +14,7 @@ var runSequence = require('run-sequence');
 
 gulp.task('connect', function () {
   connect.server({
-    root: './src/',
+    root: './',
     port: 8888,
     livereload: true
   });
@@ -28,7 +28,7 @@ gulp.task('connectDist', function () {
 });
 
 gulp.task('html', function () {
-  gulp.src('./src/*.html')
+  gulp.src('./*.html')
     .pipe(connect.reload());
 });
 
