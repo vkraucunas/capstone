@@ -1,3 +1,2 @@
 node_modules/
-src/.DS_store
-img/
+.DS_Store
