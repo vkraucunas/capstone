@@ -1,27 +1,23 @@
-$blue: #006E90;
+$blue: #254A63;
 $emerald: #026945;
 $turq: #005c78;
 $cerulean: #0362a1;
 $purple: #5a1878;
-$yellow: #DAFF7D;
+$black-olive: #3B3D3B;
+$links: rgba(234, 230, 231, .6);
+$header-grey: rgba(100,100,100,.3);
+$main-background: rgba(200,200,200,.3);
 
-body{
+
+body {
     background:$blue;
     -webkit-animation:colour 30s linear infinite;
     -moz-animation:colour 30s linear infinite;
-    color: white;
-    font-size: 50%;
-
-    header {
-        background-color: rgba(100,100,100,.3);
-        border-bottom: 1px groove white;
-        margin-bottom: 30px;
-        text-align: center;
-
-        h1 {
-            color: rgba(220,220,220,.7);
-        }
-    }
+    color: $black-olive;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
     @-webkit-keyframes colour{
         0%{
@@ -57,57 +53,93 @@ body{
             background:#006E90
         }
     }
+    p {
+        font-size: 22px;
+    }
+    a, a:hover {
+        color: $links;
+        font-size: 22px;
+        text-decoration: none;
+        letter-spacing: 2px;
+    }
 
-    #nav {
+    header {
+        background-color: $header-grey;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 50px;
+        text-align: center;
+        padding-bottom: 20px;
+        -webkit-box-shadow: 0px 10px 40px 10px $header-grey;
+        -moz-box-shadow: 0px 10px 40px 10px $header-grey;
+        box-shadow: 0px 10px 40px 10px $header-grey;
+
+        img {
+            margin: 50px;
+        }
+
+        a:after, a:before {
+            backface-visibility: hidden;
+            border: 1px solid rgba(#fff, 0);
+            bottom: 0px;
+            content: " ";
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            transition: all 280ms ease-in-out;
+            width: 0;
+        }
+
+        a:hover:after, a:hover:before {
+            backface-visibility: hidden;
+            border-color: $links;
+            transition: width 350ms ease-in-out;
+            width: 75%;
+        }
+
+        a:hover:before {
+            bottom: auto;
+            top: 0;
+            width: 70%;
+        }
+    }
+
+    nav, footer {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
         text-align: center;
     }
 
-    a {
-        color: $yellow;
-    }
-    button {
-        color: white;
-        border: 0 solid;
-        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
-        outline: 1px solid;
-        outline-color: rgba(255, 255, 255, .5);
-        outline-offset: 0px;
-        text-shadow: none;
-        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-    }
-
-    button:hover {
-        color: $yellow;
-        border: 1px solid;
-        box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
-        outline-color: rgba(255, 255, 255, 0);
-        outline-offset: 15px;
-        text-shadow: 1px 1px 2px #427388;
-    }
-
     main {
-        padding: 30px;
+        background-color: $main-background;
+        border-radius: 20px;
+
+        h5 {
+            color: $cerulean;
+        }
+
+        a, a:hover {
+            letter-spacing: 0;
+            color: $black-olive;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #home-content, #module-content, #resources-content {
+            padding: 80px;
+        }
+
     }
 
-    .typed-cursor{
-        opacity: 1;
-        -webkit-animation: blink 0.7s infinite;
-        -moz-animation: blink 0.7s infinite;
-        animation: blink 0.7s infinite;
+    footer {
+        margin-top: 50px;
+        padding-bottom: 50px;
     }
-    @keyframes blink{
-        0% { opacity:1; }
-        50% { opacity:0; }
-        100% { opacity:1; }
-    }
-    @-webkit-keyframes blink{
-        0% { opacity:1; }
-        50% { opacity:0; }
-        100% { opacity:1; }
-    }
-    @-moz-keyframes blink{
-        0% { opacity:1; }
-        50% { opacity:0; }
-        100% { opacity:1; }
-    }
+
+
 }
+
+
