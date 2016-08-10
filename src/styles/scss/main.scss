@@ -115,6 +115,10 @@ body {
         background-color: $main-background;
         border-radius: 20px;
 
+        h5 {
+            color: $cerulean;
+        }
+
         a, a:hover {
             letter-spacing: 0;
             color: $black-olive;
@@ -128,6 +132,11 @@ body {
             padding: 80px;
         }
 
+    }
+
+    footer {
+        margin-top: 50px;
+        padding-bottom: 50px;
     }
 
 

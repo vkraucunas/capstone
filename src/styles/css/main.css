@@ -77,6 +77,8 @@ body {
   body main {
     background-color: rgba(200, 200, 200, 0.3);
     border-radius: 20px; }
+    body main h5 {
+      color: #0362a1; }
     body main a, body main a:hover {
       letter-spacing: 0;
       color: #3B3D3B; }
@@ -84,3 +86,6 @@ body {
       text-decoration: underline; }
     body main #home-content, body main #module-content, body main #resources-content {
       padding: 80px; }
+  body footer {
+    margin-top: 50px;
+    padding-bottom: 50px; }
