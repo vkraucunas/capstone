@@ -78,7 +78,8 @@ body {
     background-color: rgba(200, 200, 200, 0.3);
     border-radius: 20px; }
     body main h5 {
-      color: #0362a1; }
+      color: #3B3D3B;
+      font-weight: 600; }
     body main a, body main a:hover {
       letter-spacing: 0;
       color: #3B3D3B; }
